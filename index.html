@@ -40,6 +40,123 @@
     <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
-    <h1>English Janala Project Is Cooking</h1>
+    <header class="bg-[#badeff82] shadow-sm">
+      <div class="navbar md:w-11/12 md:mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-3"
+            >
+              <li>
+                <a href="" class="btn bg-base-100 font-semibold text-sm"
+                  ><i class="fa-solid fa-circle-question"></i> FAQ</a
+                >
+              </li>
+
+              <li>
+                <a href="" class="btn font-semibold bg-base-100 text-sm"
+                  ><i class="fa-solid fa-book-open"></i>Learn</a
+                >
+              </li>
+
+              <li>
+                <a href="" class="btn font-semibold bg-base-100 text-sm"
+                  ><i class="fa-solid fa-right-from-bracket"></i> LogOut</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a href="" class="flex items-center gap-1"
+            ><span class="font-bold text-xl">English</span
+            ><img src="./assets/logo.png" alt="" />
+            <span class="font-bangla text-xl font-semibold">জানালা</span></a
+          >
+        </div>
+        <div class="navbar-end hidden lg:flex">
+          <ul class="menu menu-horizontal px-1 space-x-4">
+            <li>
+              <a
+                href=""
+                class="btn btn-outline btn-primary font-semibold text-sm"
+                ><i class="fa-solid fa-circle-question"></i> FAQ</a
+              >
+            </li>
+
+            <li>
+              <a
+                href=""
+                class="btn btn-outline btn-primary font-semibold text-sm"
+                ><i class="fa-solid fa-book-open"></i>Learn</a
+              >
+            </li>
+
+            <li>
+              <a
+                href=""
+                class="btn btn-outline btn-primary font-semibold text-sm"
+                ><i class="fa-solid fa-right-from-bracket"></i> LogOut</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section
+      id="banner-hero-section"
+      class="flex flex-col-reverse md:flex-row gap-5 justify- items-center py-5 w-11/12 mx-auto"
+    >
+      <div class="contant flex-1 space-y-6 text-center md:text-left">
+        <h2 class="text-5xl font-bold">
+          <span class="text-sky-500">English</span> is Easy!!
+        </h2>
+        <p class="font-medium text-2xl opacity-80 font-bangla">
+          আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+          আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
+          অন্য একটি Level এ
+        </p>
+        <div
+          class="flex flex-col items-center w-full md:items-stretch md:flex-col md:max-w-80 space-y-5"
+        >
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Enter Your Name"
+            class="px-3 py-3 rounded border-cyan-200"
+          />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="************"
+            class="px-3 py-3 rounded border-cyan-200"
+          />
+          <button class="btn btn-info max-w-32 text-sm font-semibold">
+            Get Started
+          </button>
+        </div>
+      </div>
+      <div class="image flex-1">
+        <img src="./assets/hero-student.png" alt="" />
+      </div>
+    </section>
   </body>
 </html>
