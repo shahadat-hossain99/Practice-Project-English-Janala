@@ -29,6 +29,64 @@ const loadLevelWord = (id) => {
     });
 };
 
+const loadWordDetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/word/${id}`;
+  // console.log(url);
+  const res = await fetch(url);
+  const details = await res.json();
+  console.log(details);
+  displayWordDetails(details.data);
+};
+
+// {
+//     "word": "Yearn",
+//     "meaning": "তীব্র আকাঙ্ক্ষা করা",
+//     "pronunciation": "ইয়ার্ন",
+//     "level": 3,
+//     "sentence": "She yearned for her hometown.",
+//     "points": 3,
+//     "partsOfSpeech": "verb",
+//     "synonyms": [
+//         "long for",
+//         "desire",
+//         "crave"
+//     ],
+//     "id": 24
+// }
+
+const displayWordDetails = (details) => {
+  console.log(details);
+  const detailsContainer = document.getElementById("details-container");
+  detailsContainer.innerHTML = `      
+   <div class="space-y-2">
+            <h2 class="font-semibold text-4xl">
+              ${details.word} ( <i class="fa-solid fa-microphone-lines"></i> : ${details.pronunciation})
+            </h2>
+          </div>
+
+          <div class="space-y-2">
+            <h2 class="font-semibold text-2xl">Meaning</h2>
+            <p class="font-bangla text-2xl">${details.meaning}</p>
+          </div>
+
+          <div class="space-y-2">
+            <h2 class="font-semibold text-2xl">Example</h2>
+            <p class="text-2xl">${details.sentence}</p>
+          </div>
+
+          <div class="space-y-2">
+            <h2 class="font-semibold text-2xl font-bangla" >সমার্থক শব্দ গুলো</h2>
+            <span class="btn">dum</span>
+            <span class="btn">dum</span>
+            <span class="btn">dum</span>
+          </div>
+          
+          
+          `;
+
+  document.getElementById("word_modal").showModal();
+};
+
 const displayLevelWord = (levelWords) => {
   console.log(levelWords);
 
@@ -71,7 +129,7 @@ const displayLevelWord = (levelWords) => {
         <p class="text-sm font-medium">Meaning /Pronounciation</p>
         <div class="text-3xl font-semibold font-bangla">${word.meaning ? word.meaning : "তথ্য পাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "তথ্য পাওয়া যায়নি"}</div>
         <div class="flex justify-between items-center">
-          <button class="btn bg-cyan-50 hover:bg-cyan-100">
+          <button onclick="loadWordDetails(${word.id})" class="btn bg-cyan-50 hover:bg-cyan-100">
             <i class="fa-solid fa-circle-info"></i>
           </button>
           <button class="btn bg-cyan-50 hover:bg-cyan-100">
