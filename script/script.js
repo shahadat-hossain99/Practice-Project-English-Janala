@@ -1,5 +1,26 @@
 console.log("i am connected");
 
+const createElement = (arr) => {
+  const htmlElements = arr.map((ele) => `<span class="btn">${ele}</span>`);
+  return htmlElements.join(" ");
+};
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+const manageLoading = (status) => {
+  if (status == true) {
+    document.getElementById("Loading").classList.remove("hidden");
+    document.getElementById("word-container").classList.add("hidden");
+  } else {
+    document.getElementById("Loading").classList.add("hidden");
+    document.getElementById("word-container").classList.remove("hidden");
+  }
+};
+
 const loadLessons = () => {
   const url = "https://openapi.programming-hero.com/api/levels/all";
 
@@ -15,6 +36,8 @@ const removeActive = () => {
 
 const loadLevelWord = (id) => {
   console.log(id);
+
+  manageLoading(true);
   const url = ` https://openapi.programming-hero.com/api/level/${id}`;
   console.log(url);
   fetch(url)
@@ -76,9 +99,8 @@ const displayWordDetails = (details) => {
 
           <div class="space-y-2">
             <h2 class="font-semibold text-2xl font-bangla" >সমার্থক শব্দ গুলো</h2>
-            <span class="btn">dum</span>
-            <span class="btn">dum</span>
-            <span class="btn">dum</span>
+
+            <div class="">${createElement(details.synonyms)}</div>
           </div>
           
           
@@ -107,7 +129,7 @@ const displayLevelWord = (levelWords) => {
       </div>
 
      `;
-
+    manageLoading();
     return;
   }
 
@@ -132,7 +154,7 @@ const displayLevelWord = (levelWords) => {
           <button onclick="loadWordDetails(${word.id})" class="btn bg-cyan-50 hover:bg-cyan-100">
             <i class="fa-solid fa-circle-info"></i>
           </button>
-          <button class="btn bg-cyan-50 hover:bg-cyan-100">
+          <button onclick="pronounceWord('${word.word}')" class="btn bg-cyan-50 hover:bg-cyan-100">
             <i class="fa-solid fa-volume-high"></i>
           </button>
         </div>
@@ -141,6 +163,7 @@ const displayLevelWord = (levelWords) => {
     `;
     wordContainer.appendChild(wordCard);
   });
+  manageLoading();
 };
 
 const displayLessons = (lessons) => {
@@ -165,3 +188,23 @@ const displayLessons = (lessons) => {
   });
 };
 loadLessons();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  removeActive();
+  const inputs = document.getElementById("input-search");
+  const searchValue = inputs.value.trim().toLowerCase();
+  console.log(searchValue);
+
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      const allWords = data.data;
+      console.log(allWords);
+      const filterWords = allWords.filter((word) =>
+        word.word.toLowerCase().includes(searchValue),
+      );
+      console.log(filterWords);
+      displayLevelWord(filterWords);
+    });
+});
